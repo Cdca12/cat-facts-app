@@ -1,5 +1,5 @@
 <template>
-  <div class="m-4">
+  <div class="home m-4">
     <Card
       v-for="fact in facts"
       :key="fact._id"
@@ -19,16 +19,16 @@ export default {
   components: {
     Card,
   },
+    computed: {
+      ...mapState(["facts"])
+    },
   methods: {
-    // No mapear mutations
-    ...mapActions(["getFactsFetch"])
-  },
-  computed: {
-    ...mapState(["facts"])
+    // Nota: No mapear mutations
+    ...mapActions(["getFacts"])
   },
   
   created() {
-    this.getFactsFetch();
+    this.getFacts();
   },
 };
 </script>
