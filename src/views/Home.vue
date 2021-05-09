@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     Home
-    <br>
-    <img alt="Vue logo" src="../assets/logo.png">
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    
+    <div v-for="fact in facts" :key="fact._id">
+      {{ fact.text }}
+      <br /><br />
+    </div>
   </div>
 </template>
 
@@ -13,9 +13,26 @@
 // import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'Home',
-  components: {
-    // HelloWorld
-  }
-}
+  name: "Home",
+  components: {},
+  data() {
+    return {
+      facts: [],
+    };
+  },
+  methods: {
+    async getFacts() {
+      try {
+        const res = await fetch("https://cat-fact.herokuapp.com/facts");
+        const data = await res.json();
+        this.facts = data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+  created() {
+    this.getFacts();
+  },
+};
 </script>
