@@ -1,20 +1,23 @@
 <template>
-  <div class="home">
-    Home
-    <div v-for="fact in facts" :key="fact._id">
-      {{ fact.text }}
-      <br /><br />
-    </div>
+  <div class="m-4">
+    <Card
+      v-for="fact in facts"
+      :key="fact._id"
+      :id="fact._id"
+      :text="fact.text"
+    />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+import Card from "@/components/Card.vue";
 
 export default {
   name: "Home",
-  components: {},
+  components: {
+    Card,
+  },
   data() {
     return {
       facts: [],
