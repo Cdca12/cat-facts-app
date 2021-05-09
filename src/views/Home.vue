@@ -20,11 +20,11 @@ export default {
     Card,
   },
     computed: {
-      ...mapState(["facts"])
+      ...mapState(['facts'])
     },
   methods: {
     // Nota: No mapear mutations
-    ...mapActions(["getFacts"])
+    ...mapActions(['getFacts'])
   },
   
   created() {

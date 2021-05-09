@@ -1,14 +1,17 @@
 <template>
   <div>
     <div class="alert alert-primary" role="alert">
-      {{ fact }}
+      ID: {{ fact._id }}
+      <br>
+      Fact: {{ fact.text }}
+      <br>
+      Fecha de creación: {{ fact.createdAt }}
     </div>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
-
 
 export default {
   name: "DetailFact",

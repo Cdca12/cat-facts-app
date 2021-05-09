@@ -15,6 +15,9 @@ export default new Vuex.Store({
     },
     SET_FACT(state, fact) {
       state.fact = fact;
+    },
+    CLEAR_FACT(state) {
+      state.fact = {}
     }
   },
   actions: {
@@ -27,6 +30,14 @@ export default new Vuex.Store({
       axios.get(`https://cat-fact.herokuapp.com/facts/${id}`)
         .then(res => commit('SET_FACT', res.data))
         .catch(err => console.log(err))
+      },
+      getRandomFact({ commit }) {
+        axios.get('https://cat-fact.herokuapp.com/facts/random')
+        .then(res => commit('SET_FACT', res.data))
+        .catch(err => console.log(err))
     },
+    clearFact({ commit }) {
+      commit('CLEAR_FACT')
+    }
   }
 })
