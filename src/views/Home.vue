@@ -12,30 +12,23 @@
 <script>
 // @ is an alias to /src
 import Card from "@/components/Card.vue";
+import { mapActions, mapState } from 'vuex';
 
 export default {
   name: "Home",
   components: {
     Card,
   },
-  data() {
-    return {
-      facts: [],
-    };
-  },
   methods: {
-    async getFacts() {
-      try {
-        const res = await fetch("https://cat-fact.herokuapp.com/facts");
-        const data = await res.json();
-        this.facts = data;
-      } catch (error) {
-        console.log(error);
-      }
-    },
+    // No mapear mutations
+    ...mapActions(["getFactsFetch"])
   },
+  computed: {
+    ...mapState(["facts"])
+  },
+  
   created() {
-    this.getFacts();
+    this.getFactsFetch();
   },
 };
 </script>
