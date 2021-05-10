@@ -1,10 +1,10 @@
 <template>
-  <div>
-    RandomFact
+  <div class="randomFact m-4">
+    Discover a new random fact!
     <br />
     <br />
     <button @click="getRandomFact" type="button" class="btn btn-primary">
-      Obtener dato
+      Get Random Fact
     </button>
     <hr />
     <div v-if="Object.keys(fact).length != 0">
@@ -12,11 +12,13 @@
       <br />
       {{ fact.text }}
       <br />
-      {{
-        fact.status.verified
-          ? "Verificado"
-          : "Sin información sobre su verificación"
-      }}
+      <span :style="verifiedColor">
+        {{
+          fact.status.verified
+            ? "Verificado"
+            : "Sin información sobre su verificación"
+        }}
+      </span>
       <br />
     </div>
   </div>
@@ -30,6 +32,9 @@ export default {
   components: {},
   computed: {
     ...mapState(["fact"]),
+    verifiedColor() {
+      return this.fact.status.verified ? { color: "green" } : { color: "red" };
+    },
   },
   methods: {
     ...mapActions(["getRandomFact", "clearFact"]),
@@ -42,4 +47,8 @@ export default {
 </script>
 
 <style>
+.randomFact {
+  font-size: 18px;
+}
+
 </style>

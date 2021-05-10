@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link :to="`/detalle/${id}`"> 
+    <router-link class="link" :to="`/detalle/${id}`"> 
       <div class="alert alert-primary" role="alert">
         {{ text }}
         <br />
@@ -21,4 +21,8 @@ export default {
 </script>
 
 <style>
+.link {
+  text-decoration: none;
+}
+
 </style>
